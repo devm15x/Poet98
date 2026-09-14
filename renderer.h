@@ -4,4 +4,5 @@
 #include<stdio.h>
 #include<gl\gl.h>
 void draw(buffer);
+void init();
 #endif

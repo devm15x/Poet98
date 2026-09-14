@@ -54,12 +54,12 @@ int WINAPI WinMain (HINSTANCE hInstance,
     hWnd = CreateWindow (
       "PoetEngine", "Poet Engine for Windows", 
       WS_CAPTION | WS_POPUPWINDOW | WS_VISIBLE,
-      0, 0, 256, 256,
+      0, 0, 800, 600,
       NULL, NULL, hInstance, NULL);
 
     /* enable OpenGL for the window */
     EnableOpenGL (hWnd, &hDC, &hRC);
-
+    init();
     /* program main loop */
     while (!bQuit)
     {

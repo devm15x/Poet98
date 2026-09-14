@@ -6,7 +6,13 @@
 #include <windows.h>
 #include <gl/gl.h>
 #include "renderer.h"
-
+#include "keyboard.h"
+#include "mouse.h"
+float x = 0.0f;
+float y = 0.0f;
+float z = -3.0f;
+float yaw = 0.0f;
+float pitch = 0.0f;
 
 /**************************
  * Function Declarations
@@ -56,7 +62,8 @@ int WINAPI WinMain (HINSTANCE hInstance,
       WS_CAPTION | WS_POPUPWINDOW | WS_VISIBLE,
       0, 0, 800, 600,
       NULL, NULL, hInstance, NULL);
-
+      ShowCursor(FALSE);
+      
     /* enable OpenGL for the window */
     EnableOpenGL (hWnd, &hDC, &hRC);
     init();
@@ -79,8 +86,10 @@ int WINAPI WinMain (HINSTANCE hInstance,
         }
         else
         {
-            /* OpenGL animation code goes here */
-               draw(hDC);
+            /* OpenGL animation and logic code goes here */
+               setMovement(&x, &y, &z, &pitch);
+               setMouseLook(hWnd, &yaw, &pitch);
+               draw(hDC, x, y, z, yaw, pitch);
         }
     }
 

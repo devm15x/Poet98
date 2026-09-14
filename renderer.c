@@ -4,6 +4,10 @@
 #include <windows.h>
 #include "renderer.h"
 float theta;
+float camX = 0.0f;
+float camY = 0.0f;
+float camZ = -3.0f;
+
 void project(){
      glMatrixMode(GL_PROJECTION);
      glLoadIdentity();
@@ -23,11 +27,14 @@ void init() {
      glEnable(GL_DEPTH_TEST);
      }
      
-void draw(HDC buffer) {      
+void draw(HDC buffer, float x, float y, float z, float pitch, float yaw) {     
+
             glMatrixMode(GL_MODELVIEW);
             glLoadIdentity();
+            glRotatef(pitch, 1.0f, 0.0f, 0.0f);
+            glRotatef(yaw, 0.0f, 1.0f, 0.0f);
 
-            glTranslatef(0.0f, 0.0f, -3.0f);     
+            glTranslatef(x, y, z);     
             glClearColor (0.0f, 0.0f, 0.0f, 0.0f);
             glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

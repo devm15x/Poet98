@@ -5,14 +5,14 @@ CPP  = g++.exe
 CC   = gcc.exe
 WINDRES = windres.exe
 RES  = 
-OBJ  = main.o renderer.o keyboard.o mouse.o $(RES)
-LINKOBJ  = main.o renderer.o keyboard.o mouse.o $(RES)
-LIBS =  -L"C:/Dev-Cpp/lib" -mwindows -lopengl32 -lglu32  
+OBJ  = main.o renderer.o keyboard.o mouse.o obj.o log.o mtl.o $(RES)
+LINKOBJ  = main.o renderer.o keyboard.o mouse.o obj.o log.o mtl.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib" -mwindows -lopengl32 -lglu32 -lmingw32 -lSDLmain -lSDL -lwinmm  
 INCS =  -I"C:/Dev-Cpp/include" 
 CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
 BIN  = Poet98.exe
-CXXFLAGS = $(CXXINCS)  
-CFLAGS = $(INCS)  
+CXXFLAGS = $(CXXINCS)   -std=c99
+CFLAGS = $(INCS)   -std=c99
 RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
@@ -37,3 +37,12 @@ keyboard.o: keyboard.c
 
 mouse.o: mouse.c
 	$(CC) -c mouse.c -o mouse.o $(CFLAGS)
+
+obj.o: obj.c
+	$(CC) -c obj.c -o obj.o $(CFLAGS)
+
+log.o: log.c
+	$(CC) -c log.c -o log.o $(CFLAGS)
+
+mtl.o: mtl.c
+	$(CC) -c mtl.c -o mtl.o $(CFLAGS)

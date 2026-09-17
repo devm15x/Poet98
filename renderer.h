@@ -3,6 +3,7 @@
 #include <windows.h>
 #include<stdio.h>
 #include<gl\gl.h>
-void draw(HDC buffer, float x, float y , float z, float pitch, float yaw);
+#include "obj.h"
+void draw(float x, float y , float z, float pitch, float yaw);
 void init();
 #endif

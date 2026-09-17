@@ -1,13 +1,15 @@
 #include <stdio.h>
+#include <SDL.h>
 #include <gl\gl.h>
 #include <gl\glu.h>
 #include <windows.h>
 #include "renderer.h"
+#include "obj.h"
 float theta;
 float camX = 0.0f;
 float camY = 0.0f;
 float camZ = -3.0f;
-
+Model tv;
 void project(){
      glMatrixMode(GL_PROJECTION);
      glLoadIdentity();
@@ -25,10 +27,10 @@ void project(){
 void init() {
      project();
      glEnable(GL_DEPTH_TEST);
+     tv = loadObj("tv.obj");
      }
-     
-void draw(HDC buffer, float x, float y, float z, float pitch, float yaw) {     
-
+            
+void draw(float x, float y, float z, float pitch, float yaw) {  
             glMatrixMode(GL_MODELVIEW);
             glLoadIdentity();
             glRotatef(pitch, 1.0f, 0.0f, 0.0f);
@@ -86,9 +88,9 @@ void draw(HDC buffer, float x, float y, float z, float pitch, float yaw) {
             glColor3f (1.0f, 0.0f, 1.0f);   glVertex3f (1.0f, -1.0f, -1.0f);
             glEnd ();
             glPopMatrix ();
-
-            SwapBuffers (buffer);
+            glTranslatef(0.0f, -2.0f, 0.0f);
+            glColor3f(0.5f, 0.5f, 0.5f);   drawModel(&tv);   
+            SDL_GL_SwapBuffers();
             
             theta += 1.0f;
-            Sleep (1);
 }
